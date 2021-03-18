@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Players</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://jqwidgets.com/jquery-widgets-demo/scripts/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="https://jqwidgets.com/jquery-widgets-demo/jqwidgets/jqx-all.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://jqwidgets.com/jquery-widgets-demo/jqwidgets/styles/jqx.base.css" />
+
+</head>
+<body>
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+        var source =
+        {
+            datatype: "json",
+            datafields: [
+
+
+                { name: 'MId', type: 'string' },
+                { name: 'MName', type: 'string' },
+                { name: 'StarCast', type: 'string' },
+                { name: 'Producer', type: 'string' },
+                { name: 'Director', type: 'string' },
+                { name: 'ReleaseDate', type: 'datetime' }
+                
+
+
+
+            ],
+            url: 'https://localhost:44374/odata/Movies'
+        }
+        var dataAdapter = new $.jqx.dataAdapter(source);
+        // displaying data in the grid with jqxGrid
+        $("#gridProducts").jqxGrid(
+            {
+                width: 1000,
+                source: dataAdapter,
+                pageable: true,
+                sortable: true,
+                columns: [
+
+                    { text: 'MId', datafield: 'MId', width: 120 },
+                    { text: 'MName', datafield: 'MName', width: 120 },
+                    { text: 'StarCast', datafield: 'StarCast', width: 180 },
+                    { text: 'Producer', datafield: 'Producer', width: 80, cellsalign: 'right' },
+                    { text: 'Director', datafield: 'Director', width: 90, cellsalign: 'right', cellsformat: 'c2' },
+                    { text: 'ReleaseDate', datafield: 'ReleaseDate', width: 180 },
+
+
+                ]
+            });
+    });
+    </script>
+    }
+
+
+    <div class="container">
+        <div class="jumbotron bg-primary text-center text-white p-3">
+            <h1>Using Api in Html</h1>
+        </div>
+        <div id="gridProducts" class="container bg-success p-3"></div>
+
+    </div>
+
+</body>
+</html>
